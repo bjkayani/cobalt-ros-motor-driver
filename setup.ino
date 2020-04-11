@@ -42,6 +42,7 @@ void setup() {
   nh.subscribe(cameraServoSubscriber);
   nh.advertise(batteryState);
 
+
   //====================Serial Setup====================  
   
   Serial.begin(115200);

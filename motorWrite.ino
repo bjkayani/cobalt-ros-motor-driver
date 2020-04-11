@@ -5,8 +5,8 @@ void writeMotorCommands(){
   MotorCommandLastSent = millis();
 
   //convert speed in m/s to estimated PWM value
-  pwmLeftMotorSpeed = min(((cmdLeftMotorSpeed/maxMotorSpeed) * 255), 255);
-  pwmRightMotorSpeed = min(((cmdRightMotorSpeed/maxMotorSpeed) * 255), 255);
+  int pwmLeftMotorSpeed = min(((cmdLeftMotorSpeed/maxMotorSpeed) * 255), 255);
+  int pwmRightMotorSpeed = min(((cmdRightMotorSpeed/maxMotorSpeed) * 255), 255);
 
   //left motor speed set based on direction
   if(leftMotorDirection == 1){//forward

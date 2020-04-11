@@ -19,14 +19,14 @@ int cameraServoRest = 120;
 //====================Battery Voltage====================
 
 float batteryVoltage;
-float batteryConstant = 2.0;
+//float batteryConstant = 2.0;
 float minBatteryVoltage = 6.0;
 bool lowBattery = false;
 #define BATTSENS 5
 
 //====================Debug====================
 
-bool debug = false;
+bool debug = true;
 
 //====================Pin Definitions====================
 
@@ -44,7 +44,8 @@ bool debug = false;
 
 float WheelSpacing = 0.125; //wheel spacing in meters
 float WheelDiameter = 0.0795; //wheel diameter in meters
-float WheelCirumference = WheelDiameter * 3.1416; //wheel circumference
+float wheelCircMult = 0.81;
+float WheelCirumference = WheelDiameter * 3.1416 * wheelCircMult; //wheel circumference
 
 //====================Encoder====================
 
@@ -63,6 +64,9 @@ long lastLeftPos = 0;
 long lastRightPos = 0;
 long lastEncoderTime = 0;
 
+float leftDist = 0.0;
+float rightDist = 0.0;
+
 //====================Global Velocity====================
 
 //desired motor speed in m/s
@@ -74,23 +78,30 @@ double cmdLeftMotorSpeed;
 double cmdRightMotorSpeed;
 
 //robot velocity from ROS
-float autoLinearVelocity; //in m/s
-float autoAngularVelocity; //in rad/s
+double autoLinearVelocity; //in m/s
+double autoAngularVelocity; //in rad/s
+
+double mesLinearVelocity; //in m/s
+double mesAngularVelocity; //in rad/s
 
 //motor directions (1 - forward) (0 - reverse)
 int leftMotorDirection; 
 int rightMotorDirection;
 
 //motor pwm speed values
-float pwmLeftMotorSpeed;
-float pwmRightMotorSpeed;
+//float pwmLeftMotorSpeed;
+//float pwmRightMotorSpeed;
 
 //measured motor speeds
 double obsLeftMotorSpeed;
 double obsRightMotorSpeed;
 
 //maximum motor speed
-float maxMotorSpeed = 10;
+float maxMotorSpeed = 0.5;
+
+float x = 0.0;
+float y = 0.0;
+float theta = 0.0;
 
 //====================Loop Timing====================
 
