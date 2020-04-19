@@ -46,6 +46,5 @@ void actualObsSpeed(){
     //determining motor directions
     leftMotorDirection = (cmdLeftMotorSpeed >= 0) ? 1 : 0;
     rightMotorDirection = (cmdRightMotorSpeed >= 0) ? 1 : 0;
-
-    
+     
 }

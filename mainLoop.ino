@@ -8,14 +8,11 @@ void loop() {
   left_PID.Compute();
   right_PID.Compute();
 
-  //ROS spin function
-  nh.spinOnce();
-
+ serialHandler();
   
   if ((currentTime - LastDebug) >= DEBUGOUTPUTRATE)
   {
     debugDump();
-    batteryState.publish(&batteryStateMsg);
   }
 
   if ((currentTime - ControlLoopLastTime) >= CONTROLLOOPRATE)
@@ -27,5 +24,7 @@ void loop() {
   {
     writeMotorCommands();
   } 
+
+
   
 }

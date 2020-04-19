@@ -35,17 +35,10 @@ void setup() {
   left_PID.SetOutputLimits(-maxMotorSpeed, maxMotorSpeed);
   right_PID.SetOutputLimits(-maxMotorSpeed, maxMotorSpeed);
 
-  //====================ROS Initialization====================
-
-  nh.initNode();
-  nh.subscribe(velSubscriber);
-  nh.subscribe(cameraServoSubscriber);
-  nh.advertise(batteryState);
-
-
   //====================Serial Setup====================  
   
   Serial.begin(115200);
+  Serial.setTimeout(10);
 
   //====================Camera Servo Initialization==================== 
   

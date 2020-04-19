@@ -1,9 +1,5 @@
 #include <PID.h>
 #include <ServoTimer2.h> 
-#include <ros.h>
-#include <geometry_msgs/Twist.h>
-#include <sensor_msgs/BatteryState.h>
-#include <std_msgs/UInt16.h>
 
 //====================LED Indicator====================
 
@@ -19,14 +15,14 @@ int cameraServoRest = 120;
 //====================Battery Voltage====================
 
 float batteryVoltage;
-//float batteryConstant = 2.0;
+float batteryConstant = 2.0;
 float minBatteryVoltage = 6.0;
 bool lowBattery = false;
-#define BATTSENS 5
+#define BATTSENS 0
 
 //====================Debug====================
 
-bool debug = true;
+bool debug = false;
 
 //====================Pin Definitions====================
 
@@ -89,8 +85,8 @@ int leftMotorDirection;
 int rightMotorDirection;
 
 //motor pwm speed values
-//float pwmLeftMotorSpeed;
-//float pwmRightMotorSpeed;
+float pwmLeftMotorSpeed;
+float pwmRightMotorSpeed;
 
 //measured motor speeds
 double obsLeftMotorSpeed;
@@ -98,6 +94,8 @@ double obsRightMotorSpeed;
 
 //maximum motor speed
 float maxMotorSpeed = 0.5;
+float maxLinearVelocity = 0.5;
+float maxAngularVelocity = 1.0;
 
 float x = 0.0;
 float y = 0.0;
@@ -122,20 +120,6 @@ float Kd = 0.0; //derivative
 PID left_PID(&obsLeftMotorSpeed, &cmdLeftMotorSpeed, &desLeftMotorSpeed, Kp, Ki, Kd, DIRECT);
 PID right_PID(&obsRightMotorSpeed, &cmdRightMotorSpeed, &desRightMotorSpeed, Kp, Ki, Kd, DIRECT);
 
-//====================ROS Stuff====================
-
-ros::NodeHandle nh;
-sensor_msgs::BatteryState batteryStateMsg;
-
-void autoPopulateSpeed(const geometry_msgs::Twist & msg){
-    autoLinearVelocity = msg.linear.x;
-    autoAngularVelocity = msg.angular.z;
-}
-
-void cameraServoCallback(const std_msgs::UInt16 & msg){
-   cameraServoSet(msg.data);
-}
-
-ros::Subscriber<geometry_msgs::Twist> velSubscriber("cmd_vel",&autoPopulateSpeed);
-ros::Subscriber<std_msgs::UInt16> cameraServoSubscriber("camera_servo", &cameraServoCallback);
-ros::Publisher batteryState("battery_state", &batteryStateMsg);
+String message;
+String cmd;
+float value;
