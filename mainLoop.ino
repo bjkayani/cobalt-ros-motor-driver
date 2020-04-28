@@ -8,7 +8,7 @@ void loop() {
   left_PID.Compute();
   right_PID.Compute();
 
- serialHandler();
+  serialHandler();
   
   if ((currentTime - LastDebug) >= DEBUGOUTPUTRATE)
   {
@@ -25,6 +25,4 @@ void loop() {
     writeMotorCommands();
   } 
 
-
-  
 }

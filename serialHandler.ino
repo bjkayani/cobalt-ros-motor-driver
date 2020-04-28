@@ -28,7 +28,7 @@ void serialHandler(){
     Serial.println("x"+String(x)+"y"+String(y)+"t"+String(theta));
   }
   else if(cmd == "t"){
-    Serial.println("v"+String(mesLinearVelocity)+"w"+String(mesAngularVelocity)
+    Serial.println("v"+String(mesLinearVelocity)+"w"+String(mesAngularVelocity));
   }
   cmd = "";
 

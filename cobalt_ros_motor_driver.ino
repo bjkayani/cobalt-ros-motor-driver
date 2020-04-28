@@ -95,7 +95,7 @@ double obsRightMotorSpeed;
 //maximum motor speed
 float maxMotorSpeed = 0.5;
 float maxLinearVelocity = 0.5;
-float maxAngularVelocity = 1.0;
+float maxAngularVelocity = 3.0;
 
 float x = 0.0;
 float y = 0.0;
@@ -119,6 +119,8 @@ float Kd = 0.0; //derivative
 
 PID left_PID(&obsLeftMotorSpeed, &cmdLeftMotorSpeed, &desLeftMotorSpeed, Kp, Ki, Kd, DIRECT);
 PID right_PID(&obsRightMotorSpeed, &cmdRightMotorSpeed, &desRightMotorSpeed, Kp, Ki, Kd, DIRECT);
+
+//====================Serial Message====================
 
 String message;
 String cmd;
