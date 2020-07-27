@@ -1,5 +1,8 @@
 
 void serialHandler(){
+
+  odom_seq++;
+  odom_time = micros();
   
   while(Serial.available()){
         message = Serial.readString();
@@ -24,11 +27,10 @@ void serialHandler(){
     autoLinearVelocity = 0;
     autoAngularVelocity = 0;
   }
-  else if(cmd == "p"){
-    Serial.println("x"+String(x)+"y"+String(y)+"t"+String(theta));
-  }
-  else if(cmd == "t"){
-    Serial.println("v"+String(mesLinearVelocity)+"w"+String(mesAngularVelocity));
+  else if(cmd == "o"){
+    Serial.println("t"+String(odom_time)+"s"+String(odom_time)+"x"+String(x)+
+                 "y"+String(y)+"th"+String(theta)+"v"+String(mesLinearVelocity)+
+                 "w"+String(mesAngularVelocity));
   }
   cmd = "";
 
