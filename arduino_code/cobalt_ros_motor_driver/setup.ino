@@ -12,10 +12,6 @@ void setup() {
   pinMode(LEFTENCODER_B,INPUT);
   pinMode(RIGHTENCODER_B,INPUT);
 
-  //Indicator LED
-  pinMode(LEDPIN, OUTPUT);
-  digitalWrite(LEDPIN, LOW);
-
   //====================Interrupts====================
   
   attachInterrupt(digitalPinToInterrupt(LEFTENCODER_A), leftEncoder, CHANGE);
@@ -28,12 +24,12 @@ void setup() {
   right_PID.SetMode(AUTOMATIC);
 
   //PID update rate in ms
-  left_PID.SetSampleTime(100);
-  right_PID.SetSampleTime(100);
+  left_PID.SetSampleTime(10);
+  right_PID.SetSampleTime(10);
 
   //PID limits
-  left_PID.SetOutputLimits(-maxMotorSpeed, maxMotorSpeed);
-  right_PID.SetOutputLimits(-maxMotorSpeed, maxMotorSpeed);
+  //left_PID.SetOutputLimits(-maxMotorSpeed, maxMotorSpeed);
+  //right_PID.SetOutputLimits(-maxMotorSpeed, maxMotorSpeed);
 
   //====================Serial Setup====================  
   
@@ -44,4 +40,11 @@ void setup() {
   
   cameraServo.attach(CAMERA_SERVO); 
   cameraServoSet(cameraServoRest);
+
+  //====================Neopixel Initialization==================== 
+
+  strip.begin();   
+  strip.show();         
+  strip.setBrightness(50);
+  colorWipe(strip.Color(255, 255, 255));
 }

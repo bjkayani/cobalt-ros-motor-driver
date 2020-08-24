@@ -1,9 +1,6 @@
 #include <PID_v1.h>
 #include <ServoTimer2.h> 
-
-//====================LED Indicator====================
-
-#define LEDPIN 13
+#include <Adafruit_NeoPixel.h>
 
 //====================Camera Servo====================
 
@@ -22,7 +19,7 @@ bool lowBattery = false;
 
 //====================Debug====================
 
-bool debug = false;
+bool debug = true;
 
 //====================Pin Definitions====================
 
@@ -106,14 +103,16 @@ float theta = 0.0;
 long LastDebug = 0;
 long ControlLoopLastTime = 0;
 long MotorCommandLastSent = 0;
+long LedRefreshLastTime = 0;
 
-#define DEBUGOUTPUTRATE 500
+#define DEBUGOUTPUTRATE 100
 #define CONTROLLOOPRATE 20
-#define MOTORCOMMANDLOOPRATE 20
+#define MOTORCOMMANDLOOPRATE 10
+#define LEDREFRESHRATE 5000
 
 //====================PID Stuff====================
 
-float Kp = 3.0; //proportional
+float Kp = 15.0; //proportional
 float Ki = 0.0; //integral
 float Kd = 0.0; //derivative 
 
@@ -128,3 +127,9 @@ float value;
 
 long odom_time = 0;
 int odom_seq = 0;
+
+//====================Neopixel Strip====================
+
+#define LED_PIN    12
+#define LED_COUNT 13
+Adafruit_NeoPixel strip(LED_COUNT, LED_PIN, NEO_GRB + NEO_KHZ800);

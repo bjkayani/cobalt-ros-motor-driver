@@ -7,11 +7,9 @@ void batteryMeasure(){
 
   if(batteryVoltage <= minBatteryVoltage){
     lowBattery = true;
-    digitalWrite(LEDPIN, HIGH);
   }
   else if(batteryVoltage > minBatteryVoltage){
     lowBattery = false;
-    digitalWrite(LEDPIN, LOW);
   }
   
 }

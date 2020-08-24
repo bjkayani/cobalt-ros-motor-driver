@@ -25,4 +25,8 @@ void loop() {
     writeMotorCommands();
   } 
 
+  if ((currentTime - LedRefreshLastTime) >= LEDREFRESHRATE)
+  {
+    ledRefresh();
+  }
 }
