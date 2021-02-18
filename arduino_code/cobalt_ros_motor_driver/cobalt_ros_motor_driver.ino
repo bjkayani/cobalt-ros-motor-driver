@@ -112,7 +112,7 @@ long LedRefreshLastTime = 0;
 
 //====================PID Stuff====================
 
-float Kp = 15.0; //proportional
+float Kp = 3.0; //proportional
 float Ki = 0.0; //integral
 float Kd = 0.0; //derivative 
 

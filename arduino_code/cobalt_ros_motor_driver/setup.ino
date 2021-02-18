@@ -28,8 +28,8 @@ void setup() {
   right_PID.SetSampleTime(10);
 
   //PID limits
-  //left_PID.SetOutputLimits(-maxMotorSpeed, maxMotorSpeed);
-  //right_PID.SetOutputLimits(-maxMotorSpeed, maxMotorSpeed);
+  left_PID.SetOutputLimits(-maxMotorSpeed, maxMotorSpeed);
+  right_PID.SetOutputLimits(-maxMotorSpeed, maxMotorSpeed);
 
   //====================Serial Setup====================  
   
